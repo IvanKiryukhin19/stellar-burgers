@@ -5,8 +5,5 @@ import { getIngredientsApi } from '@api';
 
 export const getIngredients = createAsyncThunk(
   `${INGREDIENTS_SLICE_NAME}/getIngredients`,
-  async () => {
-    const data = await getIngredientsApi();
-    return data;
-  }
+  getIngredientsApi
 );

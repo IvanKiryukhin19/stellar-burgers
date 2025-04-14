@@ -4,5 +4,5 @@ import { orderBurgerApi } from '@api';
 
 export const createOrder = createAsyncThunk(
   `${ORDER_SLICE_NAME}/createOrder`,
-  async (data: string[]) => await orderBurgerApi(data)
+  orderBurgerApi
 );

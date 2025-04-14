@@ -4,15 +4,13 @@ import { OrderInfoUI } from '../ui/order-info';
 import { TIngredient } from '@utils-types';
 import { useSelector } from '../../services/store';
 import { getIngredientsSelector } from '../../services/slices/ingredients';
-import { getFeedsSelector } from '../../services/slices/feeds';
 import { useParams } from 'react-router-dom';
-import { getOrdersSelector } from '../../services/slices/order';
 import { useDispatch } from '../../services/store';
 import { getOrderByNumber } from '../../services/thunk/order/orderByName';
-import { getOrderByNumberSelector } from '../../services/slices/order';
 
 export const OrderInfo: FC = () => {
   /** TODO: взять переменные orderData и ingredients из стора */
+  const dispatch = useDispatch();
   const dataIngredients = useSelector(getIngredientsSelector);
 
   //const orderData = {
@@ -26,30 +24,26 @@ export const OrderInfo: FC = () => {
   //};
 
   const orderNumber = useParams();
-  const feeds = useSelector(getFeedsSelector);
 
-  let orderData = feeds.feeds.orders.find(
-    (item) => item.number.toString() === orderNumber.number
-  );
+  const orderData = useSelector((state) => {
+    let order = state.feeds.feeds.orders.find(
+      (item) => item.number.toString() === orderNumber.number
+    );
+    if (order) return order;
 
-  if (!orderData) {
-    const orders = useSelector(getOrdersSelector);
-    if (orders) {
-      orderData = orders.find(
-        (item) => item.number.toString() === orderNumber.number
-      );
-    }
-  }
+    order = state.order.orders?.find(
+      (item) => item.number === Number(orderNumber)
+    );
+    if (order) return order;
+
+    return state.order.orderByNumber;
+  });
 
   useEffect(() => {
     if (!orderData) {
-      const dispatch = useDispatch();
       dispatch(getOrderByNumber(Number(orderNumber.number)));
     }
   }, []);
-
-  const dataOrder = useSelector(getOrderByNumberSelector);
-  if (dataOrder) orderData = dataOrder;
 
   const ingredients: TIngredient[] = dataIngredients.ingredients;
 

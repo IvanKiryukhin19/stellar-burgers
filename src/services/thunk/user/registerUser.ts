@@ -5,5 +5,5 @@ import { registerUserApi } from '@api';
 
 export const registerUser = createAsyncThunk(
   `${USER_SLICE_NAME}/registerUser`,
-  async (data: TRegisterData) => await registerUserApi(data)
+  registerUserApi
 );

@@ -4,5 +4,5 @@ import { getUserApi } from '@api';
 
 export const getUser = createAsyncThunk(
   `${USER_SLICE_NAME}/getUser`,
-  async () => await getUserApi()
+  getUserApi
 );

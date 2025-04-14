@@ -4,5 +4,5 @@ import { getOrderByNumberApi } from '@api';
 
 export const getOrderByNumber = createAsyncThunk(
   `${ORDER_SLICE_NAME}/getOrderByNumber`,
-  async (data: number) => await getOrderByNumberApi(data)
+  getOrderByNumberApi
 );

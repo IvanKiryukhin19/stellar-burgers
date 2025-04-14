@@ -40,7 +40,14 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => (
         </>
       </div>
       <div className={styles.logo}>
-        <Logo className='' />
+        <NavLink
+          to='/'
+          className={({ isActive }) =>
+            clsx(styles.link, { [styles.link_active]: isActive })
+          }
+        >
+          <Logo className='' />
+        </NavLink>
       </div>
       <div className={styles.link_position_last}>
         <NavLink

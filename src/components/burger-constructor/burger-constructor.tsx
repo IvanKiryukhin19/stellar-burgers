@@ -38,7 +38,7 @@ export const BurgerConstructor: FC = () => {
       return navigate('/login');
     }
     dispatch(createOrder(ingredientsFromStore.orderData));
-    dispatch(getOrders());
+    //dispatch(getOrders());
     navigate('/');
   };
   const closeOrderModal = () => {

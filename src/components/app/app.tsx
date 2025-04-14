@@ -27,7 +27,6 @@ import { getOrders } from '../../services/thunk/order/orders';
 import { IngredientDetails } from '../ingredient-details/ingredient-details';
 import { OrderInfo } from '../order-info/order-info';
 import { useEffect } from 'react';
-import { getCookie } from '../../utils/cookie';
 import { ProtectedRoute } from '../protected-route';
 
 const App = () => {
@@ -41,9 +40,6 @@ const App = () => {
   useEffect(() => {
     dispatch(getIngredients());
     dispatch(getUser());
-    if (getCookie('accessToken')) {
-      dispatch(getOrders());
-    }
   }, []);
 
   return (
