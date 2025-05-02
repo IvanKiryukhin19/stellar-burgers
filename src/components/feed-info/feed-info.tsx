@@ -1,7 +1,10 @@
-import { FC } from 'react';
-
+import { FC, useEffect } from 'react';
 import { TOrder } from '@utils-types';
 import { FeedInfoUI } from '../ui/feed-info';
+import { useSelector } from '../../services/store';
+import { getFeedsSelector } from '../../services/slices/feeds/feeds';
+import { useDispatch } from '../../services/store';
+import { getFeeds } from '../../services/thunk/feeds';
 
 const getOrders = (orders: TOrder[], status: string): number[] =>
   orders
@@ -11,8 +14,17 @@ const getOrders = (orders: TOrder[], status: string): number[] =>
 
 export const FeedInfo: FC = () => {
   /** TODO: взять переменные из стора */
-  const orders: TOrder[] = [];
-  const feed = {};
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getFeeds());
+  }, []);
+  const feedsFromStore = useSelector(getFeedsSelector);
+
+  const orders: TOrder[] = feedsFromStore.feeds.orders;
+  const feed = {
+    total: feedsFromStore.feeds.total,
+    totalToday: feedsFromStore.feeds.totalToday
+  };
 
   const readyOrders = getOrders(orders, 'done');
 

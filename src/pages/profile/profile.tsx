@@ -1,12 +1,29 @@
 import { ProfileUI } from '@ui-pages';
 import { FC, SyntheticEvent, useEffect, useState } from 'react';
+import { getUser } from '../../services/thunk/user/getUser';
+import { useSelector } from '../../services/store';
+import { useDispatch } from '../../services/store';
+import { getUserSelector } from '../../services/slices/user/user';
+import { getCookie } from '../../utils/cookie';
+import { updateUser } from '../../services/thunk/user/updateUser';
 
 export const Profile: FC = () => {
   /** TODO: взять переменную из стора */
-  const user = {
-    name: '',
-    email: ''
-  };
+  const dispatch = useDispatch();
+  const userData = useSelector(getUserSelector);
+
+  useEffect(() => {
+    if (getCookie('accessToken')) {
+      dispatch(getUser());
+    }
+  }, []);
+
+  const user = userData ? userData : { name: '', email: '' };
+
+  //const user = {
+  //  name: '',
+  //  email: ''
+  //};
 
   const [formValue, setFormValue] = useState({
     name: user.name,
@@ -20,7 +37,7 @@ export const Profile: FC = () => {
       name: user?.name || '',
       email: user?.email || ''
     }));
-  }, [user]);
+  }, [user]); //[user] - я убрал
 
   const isFormChanged =
     formValue.name !== user?.name ||
@@ -29,6 +46,7 @@ export const Profile: FC = () => {
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
+    dispatch(updateUser(formValue));
   };
 
   const handleCancel = (e: SyntheticEvent) => {

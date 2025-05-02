@@ -1,0 +1,9 @@
+{
+    "success": true,
+    "user": {
+        "email": "ivkusto@yandex.ru",
+        "name": "Жак-Ив Кусто"
+    },
+    "accessToken": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MGZkMGY0ZThlNjFkMDAxY2VjNTAwYiIsImlhdCI6MTc0NTg2Njk5NiwiZXhwIjoxNzQ1ODY4MTk2fQ.zDxcf6bJzw3RsfG5-cA0fywTjK-hC6JZbOgHmWnAmJo",
+    "refreshToken": "79a44507c4668e0d26c14f3b37c0fc8168a09fea6c997abd63e90bef6d62a9eb99a485dff87a9177"
+}
