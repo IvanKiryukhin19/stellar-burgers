@@ -1,17 +1,17 @@
 import { createSlice, nanoid, PayloadAction } from '@reduxjs/toolkit';
-import { CONSTRUCTOR_SLICE_NAME } from '../slicesNames';
+import { CONSTRUCTOR_SLICE_NAME } from '../../slicesNames';
 import { TIngredient, TConstructorIngredient } from '@utils-types';
 
-type TConstructorItems = {
+export type TConstructorItems = {
   bun: TConstructorIngredient | null;
   ingredients: Array<TConstructorIngredient>;
-  orderData: string[];
+  //orderData: string[];
 };
 
-const initialState: TConstructorItems = {
+export const initialState: TConstructorItems = {
   bun: null,
-  ingredients: [],
-  orderData: []
+  ingredients: []
+  //orderData: []
 };
 
 export const constructorSlice = createSlice({
@@ -21,7 +21,7 @@ export const constructorSlice = createSlice({
     addIngredient: {
       reducer: (state, action: PayloadAction<TConstructorIngredient>) => {
         const ingredient = action.payload;
-        state.orderData.push(action.payload._id);
+        //state.orderData.push(action.payload._id);
 
         if (ingredient.type === 'bun') {
           state.bun = ingredient;
@@ -60,7 +60,11 @@ export const constructorSlice = createSlice({
     }
   },
   selectors: {
-    getConstructorSelector: (state) => state
+    getConstructorSelector: (state) => state,
+    getOrderDataSelector: (state) =>
+      state.bun
+        ? [state.bun._id, ...state.ingredients.map((item) => item._id)]
+        : state.ingredients.map((item) => item._id)
   }
 });
 
@@ -71,6 +75,8 @@ export const {
   removeIngredient,
   clearConstructor
 } = constructorSlice.actions;
-export const { getConstructorSelector } = constructorSlice.selectors;
+
+export const { getConstructorSelector, getOrderDataSelector } =
+  constructorSlice.selectors;
 
 export default constructorSlice.reducer;

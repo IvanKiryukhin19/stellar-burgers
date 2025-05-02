@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ORDER_SLICE_NAME } from '../slicesNames';
+import { ORDER_SLICE_NAME } from '../../slicesNames';
 import { TOrder } from '@utils-types';
-import { createOrder } from '../thunk/order/createOrder';
-import { isRejectedAction, isPendingAction } from '../matchers';
-import { getOrders } from '../thunk/order/orders';
-import { getOrderByNumber } from '../thunk/order/orderByName';
+import { createOrder } from '../../thunk/order/createOrder';
+import { isRejectedAction, isPendingAction } from '../../matchers';
+import { getOrders } from '../../thunk/order/orders';
+import { getOrderByNumber } from '../../thunk/order/orderByName';
 
 type TNewOrder = {
   order: TOrder | null;
@@ -16,7 +16,7 @@ type TNewOrder = {
   orderByNumber: TOrder | null;
 };
 
-const initialState: TNewOrder = {
+export const initialState: TNewOrder = {
   order: null,
   name: null,
   loading: false,
@@ -60,6 +60,7 @@ export const orderSlice = createSlice({
       })
       .addCase(getOrders.pending, (state) => {
         state.loading = true;
+        state.error = null;
       })
       .addCase(getOrderByNumber.fulfilled, (state, action) => {
         state.loading = false;

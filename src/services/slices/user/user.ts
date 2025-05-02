@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { USER_SLICE_NAME } from '../slicesNames';
+import { USER_SLICE_NAME } from '../../slicesNames';
 import { TUser } from '@utils-types';
-import { getUser } from '../thunk/user/getUser';
-import { registerUser } from '../thunk/user/registerUser';
-import { loginUser } from '../thunk/user/loginUser';
-import { isPendingAction, isRejectedAction } from '../matchers';
-import { logout } from '../thunk/user/logout';
-import { updateUser } from '../../services/thunk/user/updateUser';
+import { getUser } from '../../thunk/user/getUser';
+import { registerUser } from '../../thunk/user/registerUser';
+import { loginUser } from '../../thunk/user/loginUser';
+import { isPendingAction, isRejectedAction } from '../../matchers';
+import { logout } from '../../thunk/user/logout';
+import { updateUser } from '../../thunk/user/updateUser';
 
 type TUserResponse = {
   success: boolean;
@@ -16,7 +16,7 @@ type TUserResponse = {
   error: string | null;
 };
 
-const initialState: TUserResponse = {
+export const initialState: TUserResponse = {
   success: false,
   isAuthChecked: false,
   user: null,

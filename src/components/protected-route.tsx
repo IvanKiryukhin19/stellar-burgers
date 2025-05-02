@@ -1,7 +1,7 @@
 import {
   getUserIsAuthSelector,
   getUserSelector
-} from '../services/slices/user';
+} from '../services/slices/user/user';
 import { useSelector } from '../services/store';
 import { Preloader } from './ui/preloader';
 import { Navigate, useLocation } from 'react-router';

@@ -1,15 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { INGREDIENTS_SLICE_NAME } from '../slicesNames';
+import { INGREDIENTS_SLICE_NAME } from '../../slicesNames';
 import { TIngredient } from '@utils-types';
-import { getIngredients } from '../thunk/ingredients';
+import { getIngredients } from '../../thunk/ingredients';
 
-type TIngredientsState = {
+export type TIngredientsState = {
   ingredients: Array<TIngredient>;
   loading: boolean;
   error: string | null;
 };
 
-const initialState: TIngredientsState = {
+export const initialState: TIngredientsState = {
   ingredients: [],
   loading: false,
   error: null

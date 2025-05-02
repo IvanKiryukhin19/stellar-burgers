@@ -3,7 +3,7 @@ import { FC, SyntheticEvent, useEffect, useState } from 'react';
 import { getUser } from '../../services/thunk/user/getUser';
 import { useSelector } from '../../services/store';
 import { useDispatch } from '../../services/store';
-import { getUserSelector } from '../../services/slices/user';
+import { getUserSelector } from '../../services/slices/user/user';
 import { getCookie } from '../../utils/cookie';
 import { updateUser } from '../../services/thunk/user/updateUser';
 

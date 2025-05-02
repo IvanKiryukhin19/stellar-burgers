@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { FEEDS_SLICE_NAME } from '../slicesNames';
+import { FEEDS_SLICE_NAME } from '../../slicesNames';
 import { TOrder } from '@utils-types';
-import { getFeeds } from '../thunk/feeds';
+import { getFeeds } from '../../thunk/feeds';
 
-type TFeedsState = {
+export type TFeedsState = {
   feeds: {
     orders: Array<TOrder>;
     total: number;
@@ -13,7 +13,7 @@ type TFeedsState = {
   error: string | null;
 };
 
-const initialState: TFeedsState = {
+export const initialState: TFeedsState = {
   feeds: {
     orders: [],
     total: 0,

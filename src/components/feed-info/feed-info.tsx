@@ -2,7 +2,7 @@ import { FC, useEffect } from 'react';
 import { TOrder } from '@utils-types';
 import { FeedInfoUI } from '../ui/feed-info';
 import { useSelector } from '../../services/store';
-import { getFeedsSelector } from '../../services/slices/feeds';
+import { getFeedsSelector } from '../../services/slices/feeds/feeds';
 import { useDispatch } from '../../services/store';
 import { getFeeds } from '../../services/thunk/feeds';
 
